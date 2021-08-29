@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">URL Shortener</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="{{ url_for('session_api') }}">API</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="{{ url_for('home') }}">New URL</a>
+  </div>
+
+
+  {% for message in get_flashed_messages() %}
+  <div class="container text-center">
+    <div class="p-3 mb-2 bg-danger text-white">{{ message }}</div>
+  </div>
+  <br>
+  {% endfor %}
+
+
+  {% block main %}{% endblock %}
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="{{ url_for('static', filename='jquery-3.3.1.slim.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+</body>
+
+</html>

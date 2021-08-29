@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}URL for {% if code %}"{{ code }}"{% endif %}{% endblock %}
+
+{% block main %}
+
+
+<div class="container text-center">
+  <h1 class="jumbotron-heading">URL Created</h1>
+  <input class="lead" id="new_url" value="{{ url_for('redirect_to_url', code=code, _external=True) }}" readonly>
+  <p>
+    <button onclick="myFunction()" class="btn btn-primary my-2">Copy URL</button>
+  </p>
+</div>
+
+
+<script>
+  function myFunction() {
+    var copyText = document.getElementById("new_url");
+    copyText.select();
+    document.execCommand("copy");
+  }
+</script>
+
+{% endblock %}

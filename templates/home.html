@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}URL Shortener{% endblock %}
+
+{% block main %}
+
+
+<div class="container">
+  <div class="card-deck mb-3">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal text-center">Website</h4>
+      </div>
+      <div class="card-body">
+        <form action="your-url" method="post">
+          <label for="code">Short Name</label>
+          <input type="text" class="form-control" name="code" id="code" value="" required>
+          <br>
+          <label for="url">Website URL</label>
+          <input type="url" class="form-control" name="url" id="url" value="" required>
+          <br>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Shorten</button>
+        </form>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal text-center">File</h4>
+      </div>
+      <div class="card-body">
+        <form action="your-url" method="post" enctype="multipart/form-data">
+          <label for="code">Short Name</label>
+          <input type="text" class="form-control" name="code" id="code" value="" required>
+          <br>
+          <label for="long_url">Website URL</label>
+          <input type="file" class="form-control" name="file" id="file" required>
+          <br>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Shorten</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% if codes %}
+  <h2>Codes you have created:</h2>
+  <ul>
+    {% for code in codes %}
+    <a href="{{ url_for('redirect_to_url', code=code) }}">
+      <li>{{ code }}</li>
+    </a>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+{% endblock %}
